@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myOrg/be": ["libs/be/src/index.ts"],
       "@myOrg/api-interfaces": ["libs/api-interfaces/src/index.ts"]
     }
   },
