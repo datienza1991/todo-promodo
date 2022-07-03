@@ -6,7 +6,7 @@ import { User } from '../users/entities/user.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'test',
+      database: 'todo-promodoro-db',
       entities: [User],
       synchronize: true,
     }),
