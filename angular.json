@@ -5,6 +5,9 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "be": "libs/be",
+    "fe": "libs/fe",
+    "fe-src-lib-dashboard": "libs/fe/src/lib/dashboard",
+    "ng-zorro-antd": "libs/ng-zorro-antd",
     "todos": "apps/todos",
     "todos-e2e": "apps/todos-e2e"
   }

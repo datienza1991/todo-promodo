@@ -25,6 +25,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.1.4",
     "@nrwl/angular": "14.3.6",
+    "ng-zorro-antd": "^13.3.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "sqlite3": "^5.0.8",

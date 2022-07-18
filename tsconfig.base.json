@@ -15,8 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myOrg/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@myOrg/be": ["libs/be/src/index.ts"],
-      "@myOrg/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@todos/dashboard": ["libs/fe/src/lib/dashboard/src/index.ts"],
+      "@todos/fe": ["libs/fe/src/index.ts"],
+      "@todos/ng-zorro-antd": ["libs/ng-zorro-antd/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
