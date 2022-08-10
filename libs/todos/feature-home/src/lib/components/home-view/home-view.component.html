@@ -3,15 +3,24 @@
     <nz-card class="project-card"
       ><p>Projects</p>
       <nz-card nzHoverable class="project-cards"><p>Project 1</p></nz-card>
-      <nz-card nzHoverable class="project-cards"><p>Project 1</p></nz-card>
-      <nz-card nzHoverable class="project-cards"><p>Project 1</p></nz-card>
-      <nz-card nzHoverable class="project-cards"><p>Project 1</p></nz-card>
-      <nz-card nzHoverable class="project-cards"><p>Project 1</p></nz-card>
-      <nz-card nzHoverable class="project-cards"><p>Project 1</p></nz-card>
-      <nz-card nzHoverable class="project-cards"
-        ><p>Project 2</p></nz-card
-      ></nz-card
+      <nz-card nzHoverable class="project-cards"><p>Project 2</p></nz-card>
+      <nz-card nzHoverable class="project-cards"><p>Project 3</p></nz-card>
+      <nz-input-group
+        nzCompact
+        nzAddOnBeforeIcon="plus"
+        nzAddOnAfterIcon="calendar"
+        class="add-project-input"
+      >
+        <input
+          nz-input
+          [(ngModel)]="name"
+          id="project"
+          name="name"
+          placeholder="Test"
+       
+        /> </nz-input-group
     >
+    </nz-card>
   </div>
   <div nz-col nzSpan="16">
     <nz-card class="card"
