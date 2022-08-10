@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './containers/home/home.component';
+import { HomeViewComponent } from './components/home-view/home-view.component'
 import { UiNgZorroAntdModule } from '@todos/ui-ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 
 const COMPONENTS = [
-  HomeComponent
+  HomeComponent,
+  HomeViewComponent
 ]
 
 @NgModule({
