@@ -6,8 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-view.component.less'],
 })
 export class HomeViewComponent {
-  name = '';
+  projects = [{ name: 'project 1' }, { name: 'project 2' }];
+  projectName = '';
+  taskName = '';
   constructor() {
     // Intialized imports here
+  }
+  onAddProject() {
+    this.projects.push({ name: this.projectName });
   }
 }
