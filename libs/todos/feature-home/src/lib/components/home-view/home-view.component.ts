@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ThemeType } from '@ant-design/icons-angular';
+import { IInputClock } from '../../model/IInputClock';
+import { IProject } from '../../model/IProject';
+import { ITask } from '../../model/ITask';
 
 @Component({
   selector: 'todos-home-view',
@@ -6,13 +10,46 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-view.component.less'],
 })
 export class HomeViewComponent {
-  projects = [{ name: 'project 1' }, { name: 'project 2' }];
-  projectName = '';
+  @Input() projects!: IProject[];
+  @Input() tasks!: ITask[];
+  @Input() taskToBeCompletedCount!: number;
+  @Input() taskCompletedCount!: number;
+  @Input() project!: IProject;
+  @Input() inputClocks!: IInputClock[];
+  @Output() addProjectEvent = new EventEmitter();
+  @Output() addTaskEvent = new EventEmitter();
+  @Output() updateTaskEvent = new EventEmitter();
+  @Output() updateInputIconClockMouseOver = new EventEmitter();
+  @Output() updateInputIconClockMouseLeave = new EventEmitter();
+  @Output() selectClock = new EventEmitter();
+
   taskName = '';
+
   constructor() {
     // Intialized imports here
   }
-  onAddProject() {
-    this.projects.push({ name: this.projectName });
+
+  onAddProject(event: any) {
+    this.addProjectEvent.emit(event);
+  }
+
+  onAddTask(event: any) {
+    this.addTaskEvent.emit(event);
+  }
+
+  onUpdateTask(task: ITask) {
+    this.updateTaskEvent.emit(task);
+  }
+
+  changeIconThemeOver(inputClock: IInputClock) {
+    this.updateInputIconClockMouseOver.emit(inputClock);
+  }
+
+  changeIconThemeLeave() {
+    this.updateInputIconClockMouseLeave.emit();
+  }
+
+  onSelectClock(inputClock: IInputClock){
+    this.selectClock.emit(inputClock);
   }
 }
