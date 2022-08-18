@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { first } from 'rxjs';
 
 import { HomeViewComponent } from './home-view.component';
 
@@ -18,22 +19,5 @@ describe('HomeViewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('#onAddProject() should add new #projects', () => {
-    expect(component.projects.length).toEqual(2);
-    component.onAddProject();
-    expect(component.projects.length).toEqual(3);
-  });
-
-  it('#onAddProject() should add new #projects with project 3', () => {
-    expect(component.projects[component.projects.length - 1].name).toContain(
-      'project 2'
-    );
-    component.projectName = 'project 3';
-    component.onAddProject();
-    expect(component.projects[component.projects.length - 1].name).toContain(
-      'project 3'
-    );
   });
 });

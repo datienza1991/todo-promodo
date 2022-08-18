@@ -1,1 +1,13 @@
-<todos-home-view></todos-home-view>
+<todos-home-view
+  [projects]="projects"
+  [taskToBeCompletedCount]="taskToBeCompletedCount"
+  [taskCompletedCount]="taskCompletedCount"
+  [inputClocks]="inputClocks"
+  [tasks]="tasks"
+  (addTaskEvent)="onTaskProject($event)"
+  (addProjectEvent)="onAddProject($event)"
+  (updateTaskEvent)="onUpdateTask($event)"
+  (updateInputIconClockMouseOver)="updateInputIconClockMouseOver($event)"
+  (updateInputIconClockMouseLeave)="updateInputIconClockMouseLeave()"
+  (selectClock)="onSelectClock($event)"
+></todos-home-view>
