@@ -30,9 +30,8 @@ describe('todos', () => {
 
     getTaskListItems().should((p) => expect(p.length).equal(4));
 
-    getTaskListItems()
-      .get(':nth-child(6) > .ant-card-body')
-      .get('div .clock')
-      .should((p) => expect(p.length).equal(1));
+
+    cy.get(':nth-child(6) > .ant-card-body i')
+      .should((p) => expect(p.length).equal(2));
   });
 });

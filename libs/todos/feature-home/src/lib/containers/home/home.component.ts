@@ -16,9 +16,9 @@ export class HomeComponent implements OnInit {
   ];
 
   tasks: ITask[] = [
-    { id: 1, name: 'task 1', isCompleted: false },
-    { id: 2, name: 'task 2', isCompleted: false },
-    { id: 3, name: 'task 3', isCompleted: true },
+    { id: 1, name: 'task 1', isCompleted: false, promodoroCount: 0 },
+    { id: 2, name: 'task 2', isCompleted: false, promodoroCount: 0 },
+    { id: 3, name: 'task 3', isCompleted: true, promodoroCount: 0 },
   ];
 
   inputClocks: IInputClock[] = [
@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
 
   taskToBeCompletedCount = 0;
   taskCompletedCount = 0;
+  taskClocks = [0];
 
   ngOnInit(): void {
     console.log('init tods-home');
@@ -66,13 +67,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onTaskProject(event: any) {
+  onAddTask(event: any) {
     const newId = this.tasks.length + 1;
     this.tasks.push({
       id: newId,
       name: `${event.target.value} ${newId}`,
       isCompleted: false,
+      promodoroCount: this.inputClocks.length,
     });
+    this.taskClocks = Array(this.inputClocks.filter(x => x.isSelected).length)
+      .fill(0)
+      .map((i) => i);
     this.getTaskTobeCompletedCount();
   }
 

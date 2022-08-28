@@ -76,13 +76,11 @@
             <div *nzSpaceItem class="task-detail">
               <p>{{ task.name }}</p>
               <div class="task-clock-container">
-                <div class="clock" *ngFor="let inputClock of inputClocks">
+                <div *ngFor="let taskClock of taskClocks">
                   <i
                     nz-icon
                     nzType="clock-circle"
-                    [nzTheme]="inputClock.nzIconTheme"
-                    (mouseover)="changeIconThemeOver(inputClock)"
-                    (click)="onSelectClock(inputClock)"
+                    nzTheme="twotone"
                   ></i>
                 </div>
               </div>

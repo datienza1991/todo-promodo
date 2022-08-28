@@ -16,6 +16,7 @@ export class HomeViewComponent {
   @Input() taskCompletedCount!: number;
   @Input() project!: IProject;
   @Input() inputClocks!: IInputClock[];
+  @Input() taskClocks = [0];
   @Output() addProjectEvent = new EventEmitter();
   @Output() addTaskEvent = new EventEmitter();
   @Output() updateTaskEvent = new EventEmitter();
@@ -49,7 +50,7 @@ export class HomeViewComponent {
     this.updateInputIconClockMouseLeave.emit();
   }
 
-  onSelectClock(inputClock: IInputClock){
+  onSelectClock(inputClock: IInputClock) {
     this.selectClock.emit(inputClock);
   }
 }
