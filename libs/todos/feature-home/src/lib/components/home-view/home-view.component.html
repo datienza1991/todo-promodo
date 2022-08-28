@@ -76,7 +76,7 @@
             <div *nzSpaceItem class="task-detail">
               <p>{{ task.name }}</p>
               <div class="task-clock-container">
-                <div *ngFor="let taskClock of taskClocks">
+                <div *ngFor="let clock of task.promodoroCount | numberToArray">
                   <i
                     nz-icon
                     nzType="clock-circle"

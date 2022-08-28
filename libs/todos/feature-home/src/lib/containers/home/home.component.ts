@@ -73,11 +73,9 @@ export class HomeComponent implements OnInit {
       id: newId,
       name: `${event.target.value} ${newId}`,
       isCompleted: false,
-      promodoroCount: this.inputClocks.length,
+      promodoroCount: this.inputClocks.filter((x) => x.isSelected).length,
     });
-    this.taskClocks = Array(this.inputClocks.filter(x => x.isSelected).length)
-      .fill(0)
-      .map((i) => i);
+    this.resetInputClockSelected();
     this.getTaskTobeCompletedCount();
   }
 
@@ -104,6 +102,7 @@ export class HomeComponent implements OnInit {
 
     this.tasks[index].isCompleted = task.isCompleted;
     this.getTaskCompletedCount();
+    this.getTaskTobeCompletedCount();
   }
 
   updateInputIconClockMouseOver(inputClock: IInputClock) {
@@ -166,6 +165,7 @@ export class HomeComponent implements OnInit {
 
       if (selectedCounts.length > 1) {
         element.isSelected = false;
+        element.nzIconTheme = 'outline';
       }
     }
   }

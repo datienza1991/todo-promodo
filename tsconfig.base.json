@@ -18,6 +18,7 @@
       "@myOrg/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@todos/dashboard": ["libs/fe/src/lib/dashboard/src/index.ts"],
       "@todos/todos/feature-home": ["libs/todos/feature-home/src/index.ts"],
+      "@todos/todos/shared/pipes": ["libs/todos/shared/pipes/src/index.ts"],
       "@todos/ui-ng-zorro-antd": ["libs/ui/ng-zorro-antd/src/index.ts"]
     }
   },
