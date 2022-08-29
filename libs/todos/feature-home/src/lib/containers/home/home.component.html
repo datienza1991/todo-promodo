@@ -1,14 +1,22 @@
-<todos-home-view
-  [projects]="projects"
-  [taskToBeCompletedCount]="taskToBeCompletedCount"
-  [taskCompletedCount]="taskCompletedCount"
-  [inputClocks]="inputClocks"
-  [tasks]="tasks"
-  [taskClocks]="taskClocks"
-  (addTaskEvent)="onAddTask($event)"
-  (addProjectEvent)="onAddProject($event)"
-  (updateTaskEvent)="onUpdateTask($event)"
-  (updateInputIconClockMouseOver)="updateInputIconClockMouseOver($event)"
-  (updateInputIconClockMouseLeave)="updateInputIconClockMouseLeave()"
-  (selectClock)="onSelectClock($event)"
-></todos-home-view>
+<div nz-row class="row">
+  <div nz-col nzSpan="8">
+    <todos-project-view
+      [projects]="projects"
+      (addProjectEvent)="onAddProject($event)"
+    ></todos-project-view>
+  </div>
+  <div nz-col nzSpan="16">
+    <todos-task-view
+      [taskToBeCompletedCount]="taskToBeCompletedCount"
+      [taskCompletedCount]="taskCompletedCount"
+      [inputClocks]="inputClocks"
+      [tasks]="tasks"
+      [taskClocks]="taskClocks"
+      (addTaskEvent)="onAddTask($event)"
+      (updateTaskEvent)="onUpdateTask($event)"
+      (updateInputIconClockMouseOver)="updateInputIconClockMouseOver($event)"
+      (updateInputIconClockMouseLeave)="updateInputIconClockMouseLeave()"
+      (selectClock)="onSelectClock($event)"
+    ></todos-task-view>
+  </div>
+</div>

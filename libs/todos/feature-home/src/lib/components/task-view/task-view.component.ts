@@ -1,23 +1,21 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ThemeType } from '@ant-design/icons-angular';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IInputClock } from '../../model/IInputClock';
 import { IProject } from '../../model/IProject';
 import { ITask } from '../../model/ITask';
 
 @Component({
-  selector: 'todos-home-view',
-  templateUrl: './home-view.component.html',
-  styleUrls: ['./home-view.component.less'],
+  selector: 'todos-task-view',
+  templateUrl: './task-view.component.html',
+  styleUrls: ['./task-view.component.less'],
 })
-export class HomeViewComponent {
-  @Input() projects!: IProject[];
+export class TaskViewComponent {
   @Input() tasks!: ITask[];
   @Input() taskToBeCompletedCount!: number;
   @Input() taskCompletedCount!: number;
   @Input() project!: IProject;
   @Input() inputClocks!: IInputClock[];
   @Input() taskClocks = [0];
-  @Output() addProjectEvent = new EventEmitter();
+
   @Output() addTaskEvent = new EventEmitter();
   @Output() updateTaskEvent = new EventEmitter();
   @Output() updateInputIconClockMouseOver = new EventEmitter();
@@ -30,9 +28,7 @@ export class HomeViewComponent {
     // Intialized imports here
   }
 
-  onAddProject(event: any) {
-    this.addProjectEvent.emit(event);
-  }
+ 
 
   onAddTask(event: any) {
     this.addTaskEvent.emit(event);
