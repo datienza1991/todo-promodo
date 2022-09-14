@@ -9,17 +9,9 @@ import { ITask } from '../../model/ITask';
   styleUrls: ['./home.component.less'],
 })
 export class HomeComponent implements OnInit {
-  projects: IProject[] = [
-    { id: 1, name: 'project 1' },
-    { id: 2, name: 'project 2' },
-    { id: 3, name: 'project 3' },
-  ];
-
-  tasks: ITask[] = [
-    { id: 1, name: 'task 1', isCompleted: false, promodoroCount: 0 },
-    { id: 2, name: 'task 2', isCompleted: false, promodoroCount: 0 },
-    { id: 3, name: 'task 3', isCompleted: true, promodoroCount: 0 },
-  ];
+  projects: IProject[] = [];
+  tasks: ITask[] = [];
+  taskStore: ITask[] = [];
 
   inputClocks: IInputClock[] = [
     {
@@ -52,6 +44,7 @@ export class HomeComponent implements OnInit {
   taskToBeCompletedCount = 0;
   taskCompletedCount = 0;
   taskClocks = [0];
+  project = {} as IProject;
 
   ngOnInit(): void {
     console.log('init tods-home');
@@ -63,20 +56,52 @@ export class HomeComponent implements OnInit {
     const newId = this.projects.length + 1;
     this.projects.push({
       id: newId,
-      name: `${event.target.value} ${newId}`,
+      name: `${event.target.value}`,
     });
+    this.selectProject(newId);
   }
 
   onAddTask(event: any) {
     const newId = this.tasks.length + 1;
-    this.tasks.push({
+    this.taskStore.push({
       id: newId,
       name: `${event.target.value} ${newId}`,
       isCompleted: false,
       promodoroCount: this.inputClocks.filter((x) => x.isSelected).length,
+      projectId: this.project.id,
+      promodoroDoneCount: 0
     });
+    this.getTasks();
     this.resetInputClockSelected();
     this.getTaskTobeCompletedCount();
+  }
+
+  onProjectSelected(event: IProject) {
+    this.project = { ...event };
+    this.getTasks();
+    console.log(this.tasks);
+  }
+
+  selectProject(id: number) {
+    const index = this.projects.findIndex((_project) => {
+      return _project.id === id;
+    });
+
+    if (index === -1) {
+      return;
+    }
+
+    this.project = { ...this.projects[index] };
+    this.getTasks();
+    console.log(this.tasks);
+  }
+
+  getTasks() {
+    this.tasks = [
+      ...this.taskStore.filter((x) => x.projectId === this.project.id),
+    ];
+    this.getTaskTobeCompletedCount();
+    this.getTaskCompletedCount();
   }
 
   getTaskTobeCompletedCount() {

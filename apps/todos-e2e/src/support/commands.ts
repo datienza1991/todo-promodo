@@ -13,6 +13,7 @@ declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
     login(email: string, password: string): void;
+    addProjectWithTask(projectName: string, taskName: string): void;
   }
 }
 //
@@ -21,6 +22,12 @@ Cypress.Commands.add('login', (email, password) => {
   console.log('Custom command example: Login', email, password);
 });
 
+Cypress.Commands.add('addProjectWithTask', (projectName, taskName: string) => {
+  cy.get('#project').type(projectName);
+  cy.get('#project').clear();
+  cy.get('#task-input').type(taskName);
+  cy.get('#task-input').clear();
+})
 //
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })

@@ -9,13 +9,15 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 import {
   StepForwardOutline,
   SettingOutline,
   CalendarOutline,
   PlusOutline,
   ClockCircleOutline,
-  ClockCircleTwoTone
+  ClockCircleTwoTone,
 } from '@ant-design/icons-angular/icons';
 
 const MODULES = [
@@ -26,7 +28,9 @@ const MODULES = [
   NzIconModule,
   NzSpaceModule,
   NzRadioModule,
-  NzCheckboxModule
+  NzCheckboxModule,
+  NzListModule,
+  NzMessageModule,
 ];
 
 const icons: IconDefinition[] = [
@@ -35,7 +39,7 @@ const icons: IconDefinition[] = [
   CalendarOutline,
   PlusOutline,
   ClockCircleOutline,
-  ClockCircleTwoTone
+  ClockCircleTwoTone,
 ];
 
 @NgModule({

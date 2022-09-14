@@ -2,6 +2,7 @@ export const getProjectTitle = () => cy.get('p');
 export const getProjectItems = () => cy.get('nz-card.project-items');
 export const getProjectCard = () => cy.get('nz-card.project-card');
 export const getAddProjectInput = () => cy.get('input#project');
+export const getAddTaskInput = () => cy.get('#task-input');
 export const getTaskPanel = () => cy.get('nz-card#task-panel');
 export const getTaskOverviewPanel = () =>
   getTaskPanel().get('nz-card .project-cards');

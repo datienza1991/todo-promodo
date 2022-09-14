@@ -3,6 +3,7 @@
     <todos-project-view
       [projects]="projects"
       (addProjectEvent)="onAddProject($event)"
+      (projectSelected)="onProjectSelected($event)"
     ></todos-project-view>
   </div>
   <div nz-col nzSpan="16">
@@ -12,6 +13,7 @@
       [inputClocks]="inputClocks"
       [tasks]="tasks"
       [taskClocks]="taskClocks"
+      [project]="project"
       (addTaskEvent)="onAddTask($event)"
       (updateTaskEvent)="onUpdateTask($event)"
       (updateInputIconClockMouseOver)="updateInputIconClockMouseOver($event)"
