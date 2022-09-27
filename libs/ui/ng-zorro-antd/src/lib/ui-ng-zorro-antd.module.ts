@@ -18,6 +18,10 @@ import {
   PlusOutline,
   ClockCircleOutline,
   ClockCircleTwoTone,
+  PlaySquareOutline,
+  PlaySquareTwoTone,
+  StopOutline,
+  PauseOutline,
 } from '@ant-design/icons-angular/icons';
 
 const MODULES = [
@@ -40,6 +44,10 @@ const icons: IconDefinition[] = [
   PlusOutline,
   ClockCircleOutline,
   ClockCircleTwoTone,
+  PlaySquareOutline,
+  PlaySquareTwoTone,
+  StopOutline,
+  PauseOutline
 ];
 
 @NgModule({

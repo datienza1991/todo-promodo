@@ -249,4 +249,13 @@ describe('todos-task', () => {
     getTaskListInput().type('task {enter}');
     cy.get(".ant-message").contains("Please select project!");
   });
+
+  it('should start timer', () => {
+    getAddProjectInput().type('project{enter}');
+    getTaskListInput().type('task {enter}');
+    getTaskListInput().get('.clock-list > :nth-child(3)').click();
+    getTaskListItems().first().get('i[nztype=play-square]').click();
+    getTaskListItems().first().get('i[nztype=play-square]').should('have.attr','nztheme','outline');
+    getTaskListItems().get(':nth-child(1) > ul > li > i[ng-reflect-nz-theme=twotone]').should((p) => expect(p.length).equal(1));
+  });
 });

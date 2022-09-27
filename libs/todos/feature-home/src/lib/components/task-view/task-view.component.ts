@@ -25,12 +25,14 @@ export class TaskViewComponent implements OnChanges {
   @Input() project = {} as IProject;
   @Input() inputClocks!: IInputClock[];
   @Input() taskClocks = [0];
+  @Input() isStartCountdown = false;
 
   @Output() addTaskEvent = new EventEmitter();
   @Output() updateTaskEvent = new EventEmitter();
   @Output() updateInputIconClockMouseOver = new EventEmitter();
   @Output() updateInputIconClockMouseLeave = new EventEmitter();
   @Output() selectClock = new EventEmitter();
+  @Output() startCountdown = new EventEmitter();
 
   taskName = '';
   taskInputStatus: NzStatus = '';
@@ -41,7 +43,7 @@ export class TaskViewComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
       if (propName === 'tasks') {
-        this.getTasks()
+        this.getTasks();
         return;
       }
     }
@@ -97,5 +99,9 @@ export class TaskViewComponent implements OnChanges {
     }
 
     this.selectClock.emit(inputClock);
+  }
+
+  onStartCountdown() {
+    this.startCountdown.emit();
   }
 }

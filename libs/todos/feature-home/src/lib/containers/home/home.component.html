@@ -6,6 +6,7 @@
       (projectSelected)="onProjectSelected($event)"
     ></todos-project-view>
   </div>
+
   <div nz-col nzSpan="16">
     <todos-task-view
       [taskToBeCompletedCount]="taskToBeCompletedCount"
@@ -14,11 +15,23 @@
       [tasks]="tasks"
       [taskClocks]="taskClocks"
       [project]="project"
+      [isStartCountdown]="isStartCountdown"
       (addTaskEvent)="onAddTask($event)"
       (updateTaskEvent)="onUpdateTask($event)"
       (updateInputIconClockMouseOver)="updateInputIconClockMouseOver($event)"
       (updateInputIconClockMouseLeave)="updateInputIconClockMouseLeave()"
       (selectClock)="onSelectClock($event)"
+      (startCountdown)="onStartCountdown()"
     ></todos-task-view>
+
+    <div id="countdown-timer" class="countdown-timer" *ngIf="isStartCountdown">
+      <todos-countdown-timer-view
+        [isShowPauseCountdownButton]="isShowPauseCountdownButton"
+        [isShowPlayCountdownButton]="isShowPlayCountdownButton"
+        (stopCountdown)="onStopCountdown()"
+        (showPlayCountdownButton)="onShowPlayCountdownButton()"
+        (showPauseCountdownButton)="onShowPauseCountdownButton()"
+      ></todos-countdown-timer-view>
+    </div>
   </div>
 </div>

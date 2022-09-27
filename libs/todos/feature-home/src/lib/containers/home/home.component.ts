@@ -45,7 +45,10 @@ export class HomeComponent implements OnInit {
   taskCompletedCount = 0;
   taskClocks = [0];
   project = {} as IProject;
-
+  isStartCountdown = false;
+  isTogglePausePlayCountdown = false;
+  isShowPauseCountdownButton = true;
+  isShowPlayCountdownButton = false;
   ngOnInit(): void {
     console.log('init tods-home');
     this.getTaskTobeCompletedCount();
@@ -69,7 +72,7 @@ export class HomeComponent implements OnInit {
       isCompleted: false,
       promodoroCount: this.inputClocks.filter((x) => x.isSelected).length,
       projectId: this.project.id,
-      promodoroDoneCount: 0
+      promodoroDoneCount: 0,
     });
     this.getTasks();
     this.resetInputClockSelected();
@@ -193,5 +196,23 @@ export class HomeComponent implements OnInit {
         element.nzIconTheme = 'outline';
       }
     }
+  }
+  onStartCountdown() {
+    console.log('start countdown');
+    this.isStartCountdown = true;
+  }
+  onStopCountdown() {
+    console.timeLog();
+    this.isStartCountdown = !this.isStartCountdown;
+  }
+
+  onShowPlayCountdownButton() {
+    this.isShowPauseCountdownButton = false;
+    this.isShowPlayCountdownButton = true;
+  }
+
+  onShowPauseCountdownButton() {
+    this.isShowPauseCountdownButton = true;
+    this.isShowPlayCountdownButton = false;
   }
 }

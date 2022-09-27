@@ -59,6 +59,7 @@
               [(ngModel)]="task.isCompleted"
               (ngModelChange)="onUpdateTask(task)"
             ></label>
+            <i id="start-countdown" *nzSpaceItem nz-icon nzType="play-square" [nzTheme]="!isStartCountdown ? 'outline' : 'twotone'" (click)="onStartCountdown()"></i>
             <div *nzSpaceItem class="task-detail">
               <p>{{ task.name }}</p>
               <ul class="task-clock-container">

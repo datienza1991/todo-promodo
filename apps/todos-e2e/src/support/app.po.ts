@@ -9,4 +9,6 @@ export const getTaskOverviewPanel = () =>
 export const getTaskListPanel = () => getTaskPanel().get('nz-card #task-panel');
 export const getTaskListInput = () => getTaskPanel().get('nz-card #task-input');
 export const getTaskListItems = () => getTaskPanel().get('nz-card .task-items');
+export const getTaskList = () => getTaskPanel().get('.task-list');
+export const getTaskCountdownTimer = () => getTaskPanel().get('#countdown-timer');
 //https://docs.cypress.io/guides/guides/network-requests#Failures
