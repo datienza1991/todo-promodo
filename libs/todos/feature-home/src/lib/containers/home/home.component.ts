@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IInputClock } from '../../model/IInputClock';
 import { IProject } from '../../model/IProject';
 import { ITask } from '../../model/ITask';
+import { timer } from 'rxjs';
 
+const counter = timer(0, 1000);
 @Component({
   selector: 'todos-home',
   templateUrl: './home.component.html',
@@ -53,6 +55,11 @@ export class HomeComponent implements OnInit {
     console.log('init tods-home');
     this.getTaskTobeCompletedCount();
     this.getTaskCompletedCount();
+    counter.subscribe(() => {
+      // use this for countdown
+      console.log('countdown start');
+      
+    });
   }
 
   onAddProject(event: any) {
@@ -200,6 +207,11 @@ export class HomeComponent implements OnInit {
   onStartCountdown() {
     console.log('start countdown');
     this.isStartCountdown = true;
+    //TODO: add timer here for countdown
+    this.startCoundown();
+  }
+  startCoundown() {
+    throw new Error('Method not implemented.');
   }
   onStopCountdown() {
     console.timeLog();

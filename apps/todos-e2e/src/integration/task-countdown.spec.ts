@@ -54,4 +54,12 @@ describe('todos-task-countdown', () => {
       .get('#pause-countdown')
       .should('have.id', 'pause-countdown');
   });
+  
+  it('should start to count down', () => {
+    getAddProjectInput().type('project{enter}');
+    getTaskListInput().type('task {enter}');
+    getTaskListInput().get('.clock-list > :nth-child(3)').click();
+    getTaskList().first().get('i[nztype=play-square]').click();
+    getTaskCountdownTimer().get('#countdown-text').should('have.text', '23');
+  });
 });

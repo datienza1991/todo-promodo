@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./countdown-timer-view.component.less'],
 })
 export class CountdownTimerViewComponent  {
+  @Input() countdownValue = 25;
   @Input() isShowPauseCountdownButton = true;
   @Input() isShowPlayCountdownButton = false;
   @Output() stopCountdown = new EventEmitter();
