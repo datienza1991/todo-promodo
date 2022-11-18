@@ -19,11 +19,13 @@ async function bootstrap() {
 
   const globalPrefix = 'api';
 
+  app.setGlobalPrefix(globalPrefix);
+
   const config = new DocumentBuilder()
     .setTitle('Todo Promodoro')
     .setDescription('The Todo Promodoro API Description')
     .setVersion('1.0')
-    .addTag('todoPromodoro')
+    .addTag('project')
     .build();
 
   const options: SwaggerDocumentOptions = {
@@ -31,6 +33,7 @@ async function bootstrap() {
   };
 
   const document = SwaggerModule.createDocument(app, config, options);
+
   //Customize Swagger UI
   const customOptions: SwaggerCustomOptions = {
     swaggerOptions: {
@@ -38,9 +41,9 @@ async function bootstrap() {
     },
     customSiteTitle: 'Todo Promodoro Docs',
   };
+
   SwaggerModule.setup(globalPrefix, app, document, customOptions);
 
-  app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(
