@@ -19,7 +19,7 @@ async function bootstrap() {
 
   const globalPrefix = 'api';
 
-  app.setGlobalPrefix(globalPrefix);
+  app.setGlobalPrefix(globalPrefix); // proper ordering is a must
 
   const config = new DocumentBuilder()
     .setTitle('Todo Promodoro')
