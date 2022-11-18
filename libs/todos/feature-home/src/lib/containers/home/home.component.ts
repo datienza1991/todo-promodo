@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IInputClock } from '../../model/IInputClock';
 import { IProject } from '../../model/IProject';
 import { ITask } from '../../model/ITask';
-import { timer } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
-const counter = timer(0, 1000);
 @Component({
   selector: 'todos-home',
   templateUrl: './home.component.html',
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
       isSelected: false,
     },
   ];
-
+  counter = timer(0, 1000);
   taskToBeCompletedCount = 0;
   taskCompletedCount = 0;
   taskClocks = [0];
@@ -51,15 +50,13 @@ export class HomeComponent implements OnInit {
   isTogglePausePlayCountdown = false;
   isShowPauseCountdownButton = true;
   isShowPlayCountdownButton = false;
+  counterSubscription!: Subscription;
+  countdownValue = 25;
+
   ngOnInit(): void {
     console.log('init tods-home');
     this.getTaskTobeCompletedCount();
     this.getTaskCompletedCount();
-    counter.subscribe(() => {
-      // use this for countdown
-      console.log('countdown start');
-      
-    });
   }
 
   onAddProject(event: any) {
@@ -207,14 +204,34 @@ export class HomeComponent implements OnInit {
   onStartCountdown() {
     console.log('start countdown');
     this.isStartCountdown = true;
-    //TODO: add timer here for countdown
     this.startCoundown();
   }
+
   startCoundown() {
-    throw new Error('Method not implemented.');
+    if (this.counterSubscription && !this.counterSubscription.closed)
+      this.counterSubscription.unsubscribe();
+
+    this.counterSubscription = this.counter.subscribe(() => {
+      this.countdownValue--;
+      if (this.countdownValue == 0) {
+        this.onStopCountdown();
+      }
+    });
   }
+
+  stopCoundown() {
+    if (this.counterSubscription && !this.counterSubscription.closed)
+      this.counterSubscription.unsubscribe();
+
+    this.resetTimerToDefault();
+  }
+
+  resetTimerToDefault() {
+    this.countdownValue = 25;
+  }
+
   onStopCountdown() {
-    console.timeLog();
+    this.stopCoundown();
     this.isStartCountdown = !this.isStartCountdown;
   }
 
