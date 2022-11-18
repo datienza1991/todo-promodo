@@ -3,6 +3,7 @@ import { UsersModule } from '../users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
 import { Project } from '../todos/projects/entities/project.entity';
+import { ProjectsModule } from '../todos/projects/projects.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -12,6 +13,7 @@ import { Project } from '../todos/projects/entities/project.entity';
       synchronize: true,
     }),
     UsersModule,
+    ProjectsModule
   ],
   exports: [],
 })
