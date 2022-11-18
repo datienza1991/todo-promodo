@@ -1,4 +1,6 @@
+import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateProjectDto {
-    name: string
+    name: string;
+    isActive?: boolean = false
 }
