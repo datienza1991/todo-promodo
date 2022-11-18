@@ -6,6 +6,9 @@
     "api-interfaces": "libs/api-interfaces",
     "be": "libs/be",
     "todos": "apps/todos",
-    "todos-e2e": "apps/todos-e2e"
+    "todos-e2e": "apps/todos-e2e",
+    "todos-feature-home": "libs/todos/feature-home",
+    "todos-shared-pipes": "libs/todos/shared/pipes",
+    "ui-ng-zorro-antd": "libs/ui/ng-zorro-antd"
   }
 }

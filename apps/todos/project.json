@@ -15,7 +15,10 @@
         
         "inlineStyleLanguage": "less",
         "assets": ["apps/todos/src/favicon.ico", "apps/todos/src/assets"],
-        "styles": ["apps/todos/src/styles.less"],
+        "styles": [
+          "apps/todos/src/styles.less",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -24,7 +27,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",

@@ -1,0 +1,31 @@
+<nz-card class="project-card"
+  ><p>Projects</p>
+  <ul class="project-list">
+    <li *ngFor="let project of projects">
+      <nz-card
+        nzHoverable
+        class="project-items"
+        (click)="onProjectSelected(project)"
+        ><p>{{ project.name }}</p></nz-card
+      >
+    </li>
+  </ul>
+
+  <nz-input-group
+    nzCompact
+    nzAddOnBeforeIcon="plus"
+    class="add-project-input"
+    [nzStatus]="projectInputStatus"
+  >
+    <input
+      id="project"
+      #project="ngModel"
+      [(ngModel)]="value"
+      nz-input
+      [nzStatus]="projectInputStatus"
+      name="projectName"
+      placeholder="Test"
+      (keyup.enter)="onAddProject($event)"
+    />
+  </nz-input-group>
+</nz-card>

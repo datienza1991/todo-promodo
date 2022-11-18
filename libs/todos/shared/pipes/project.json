@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/todos/shared/pipes/src",
+  "prefix": "todos",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/todos/shared/pipes"],
+      "options": {
+        "jestConfig": "libs/todos/shared/pipes/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/todos/shared/pipes/**/*.ts",
+          "libs/todos/shared/pipes/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

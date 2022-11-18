@@ -1,0 +1,79 @@
+<nz-card class="card" id="task-panel"
+  ><nz-card class="project-cards">
+    <input
+      nz-input
+      [(ngModel)]="project.name"
+      placeholder="borderless"
+      nzBorderless
+    />
+    <p>Task Overview</p>
+    <div nz-row>
+      <div nz-col nzSpan="8">
+        <p id="task-to-be-completed-count">{{ taskToBeCompletedCount }}</p>
+        <p>Task to be completed</p>
+      </div>
+      <div nz-col nzSpan="8" nzOffset="8">
+        <p id="task-completed-count">{{ taskCompletedCount }}</p>
+        <p>Task Completed</p>
+      </div>
+    </div>
+  </nz-card>
+  <nz-input-group
+    [nzSuffix]="suffixIconSearch"
+    nzCompact
+    nzAddOnBeforeIcon="plus"
+    [nzStatus]="taskInputStatus"
+  >
+    <input
+      nz-input
+      #task="ngModel"
+      [(ngModel)]="taskName"
+      id="task-input"
+      name="name"
+      placeholder="Test"
+      (keyup.enter)="onAddTask($event)"
+    />
+    <ng-template #suffixIconSearch>
+      <ul class="clock-list" (mouseleave)="changeIconThemeLeave()">
+        <li *ngFor="let inputClock of inputClocks">
+          <i
+            nz-icon
+            nzType="clock-circle"
+            [nzTheme]="inputClock.nzIconTheme"
+            (mouseover)="changeIconThemeOver(inputClock)"
+            (click)="onSelectClock(inputClock)"
+          ></i>
+        </li>
+      </ul>
+    </ng-template>
+  </nz-input-group>
+  <ul class="task-list">
+    <li *ngFor="let task of modifiedTasks; let i = index">
+      <nz-card nzHoverable class="task-items">
+        <div class="task-item-content">
+          <div nz-space nzAlign="center">
+            <label
+              id="{{ 'task-item-checkbox-' + i }}"
+              *nzSpaceItem
+              nz-checkbox
+              [(ngModel)]="task.isCompleted"
+              (ngModelChange)="onUpdateTask(task)"
+            ></label>
+            <i id="start-countdown" *nzSpaceItem nz-icon nzType="play-square" [nzTheme]="!isStartCountdown ? 'outline' : 'twotone'" (click)="onStartCountdown()"></i>
+            <div *nzSpaceItem class="task-detail">
+              <p>{{ task.name }}</p>
+              <ul class="task-clock-container">
+                <li *ngFor="let clock of task.promodoroDoneCount || 0 | numberToArray">
+                  <i nz-icon nzType="clock-circle" nzTheme="twotone"></i>
+                </li>
+                <li *ngFor="let clock of task.promodoroNotDoneCount | numberToArray">
+                  <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+    </li>
+  </ul>
+</nz-card>

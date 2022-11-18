@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/todos/feature-home/src",
+  "prefix": "todos",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/todos/feature-home"],
+      "options": {
+        "jestConfig": "libs/todos/feature-home/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/todos/feature-home/**/*.ts",
+          "libs/todos/feature-home/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

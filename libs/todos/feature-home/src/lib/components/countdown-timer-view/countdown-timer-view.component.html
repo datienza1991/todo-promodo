@@ -1,0 +1,34 @@
+<nz-card>
+  <div nz-row>
+    <div nz-col nzSpan="16"><p id="countdown-text">{{countdownValue}}</p></div>
+
+    <div nz-col nzSpan="8" class="flex-container">
+      <span
+        *ngIf="isShowPlayCountdownButton"
+        id="play-countdown"
+        class="icon"
+        nz-icon
+        nzType="play-square"
+        nzTheme="outline"
+        (click)="onShowPauseCountdownButton()"
+      ></span>
+      <span
+      *ngIf="isShowPauseCountdownButton"
+        id="pause-countdown"
+        class="icon"
+        nz-icon
+        nzType="pause"
+        nzTheme="outline"
+        (click)="onShowPlayCountdownButton()"
+      ></span>
+      <span
+        id="stop-countdown"
+        nz-icon
+        class="icon"
+        nzType="stop"
+        nzTheme="outline"
+        (click)="onStopCountdown()"
+      ></span>
+    </div>
+  </div>
+</nz-card>
