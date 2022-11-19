@@ -6,5 +6,5 @@ export class Project {
   id: number;
 
   @Column()
-  Name: string;
+  name: string;
 }
