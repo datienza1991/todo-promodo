@@ -8,7 +8,7 @@ import { ProjectsModule } from '../todos/projects/projects.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'todo-promodoro-db',
+      database: 'todo-promodoro-db-5',
       entities: [User,Project],
       synchronize: true,
     }),
