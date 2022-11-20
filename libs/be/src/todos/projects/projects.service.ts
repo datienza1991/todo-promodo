@@ -7,7 +7,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project } from './entities/project.entity';
 
 @Injectable()
-export class ProjectsService {
+export class ProjectService {
   constructor(
     @InjectRepository(Project)
     private photoRepository: Repository<Project>
