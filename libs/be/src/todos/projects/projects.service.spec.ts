@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Project } from './entities/project.entity';
-import { ProjectsService } from './projects.service';
+import { ProjectService } from './projects.service';
 
 const projectArray : Project[] = [
   {
@@ -21,12 +21,13 @@ const oneUser:  Project = {
 };
 
 describe('ProjectsService', () => {
-  let service: ProjectsService;
-  let projectRepository: Repository<Project>;
+  let service: ProjectService;
+  let repository: Repository<Project>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ProjectsService,
+      providers: [
+        ProjectService,
         {
           provide: getRepositoryToken(Project),
           useValue: {
@@ -40,8 +41,8 @@ describe('ProjectsService', () => {
       ],
     }).compile();
 
-    service = module.get<ProjectsService>(ProjectsService);
-    projectRepository = module.get<Repository<Project>>(getRepositoryToken(Project));
+    service = module.get<ProjectService>(ProjectService);
+    repository = module.get<Repository<Project>>(getRepositoryToken(Project));
   });
 
   it('should be defined', () => {
@@ -57,7 +58,7 @@ describe('ProjectsService', () => {
 
   describe('findOne()', () => {
     it('should get a single user', () => {
-      const repoSpy = jest.spyOn(projectRepository, 'findOneBy');
+      const repoSpy = jest.spyOn(repository, 'findOneBy');
       expect(service.findOne(1)).resolves.toEqual(oneUser);
       expect(repoSpy).toBeCalledWith({ id: 1 });
     });
