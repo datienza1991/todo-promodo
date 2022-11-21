@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ProjectsService } from './projects.service';
+import { ProjectService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -15,7 +15,7 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags("project")
 @Controller('projects')
 export class ProjectsController {
-  constructor(private readonly projectsService: ProjectsService) {}
+  constructor(private readonly projectsService: ProjectService) {}
 
   @Post()
   create(@Body() createProjectDto: CreateProjectDto) {
