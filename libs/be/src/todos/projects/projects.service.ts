@@ -9,26 +9,29 @@ import { Project } from './entities/project.entity';
 @Injectable()
 export class ProjectService {
   constructor(
-    @InjectRepository(Project)
-    private photoRepository: Repository<Project>
+    @Inject('PROJECT_REPOSITORY')
+    private projectRepository: Repository<Project>,
   ) {}
   create(createProjectDto: CreateProjectDto) {
-    return 'This action adds a new project';
+    const project = new Project();
+    project.name = createProjectDto.name;
+
+    return this.projectRepository.save(project);
   }
 
   async findAll(): Promise<Project[]> {
-    return await this.photoRepository.find();
+    return await this.projectRepository.find();
   }
 
   findOne(id: number): Promise<Project> {
-    return this.photoRepository.findOneBy({ id: id });
+    return this.projectRepository.findOneBy({ id: id });
   }
 
   update(id: number, updateProjectDto: UpdateProjectDto) {
     return `This action updates a #${id} project`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} project`;
+  async remove(id: number) : Promise<void> {
+    await this.projectRepository.delete(id);
   }
 }

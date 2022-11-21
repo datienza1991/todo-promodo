@@ -4,20 +4,20 @@ import { Repository } from 'typeorm';
 import { Project } from './entities/project.entity';
 import { ProjectService } from './projects.service';
 
-const projectArray : Project[] = [
+const projectArray: Project[] = [
   {
     id: 1,
-    name: "name1"
+    name: 'name1',
   },
   {
     id: 2,
-    name: "name1"
+    name: 'name1',
   },
 ];
 
-const oneUser:  Project = {
+const oneProject: Project = {
   id: 1,
-  name: "name1"
+  name: 'name1',
 };
 
 describe('ProjectsService', () => {
@@ -32,12 +32,11 @@ describe('ProjectsService', () => {
           provide: getRepositoryToken(Project),
           useValue: {
             find: jest.fn().mockResolvedValue(projectArray),
-            findOneBy: jest.fn().mockResolvedValue(oneUser),
-            // save: jest.fn().mockResolvedValue(oneUser),
-            // remove: jest.fn(),
-            // delete: jest.fn(),
+            findOneBy: jest.fn().mockResolvedValue(oneProject),
+            save: jest.fn().mockResolvedValue(oneProject),
+            delete: jest.fn(),
           },
-        }
+        },
       ],
     }).compile();
 
@@ -49,18 +48,41 @@ describe('ProjectsService', () => {
     expect(service).toBeDefined();
   });
 
+  describe('create()', () => {
+    it('should successfully insert a project', () => {
+      const oneProject: Project = {
+        id: 1,
+        name: 'name1',
+      };
+      expect(
+        service.create({
+          name: 'name1',
+        })
+      ).resolves.toEqual(oneProject);
+    });
+  });
+
   describe('findAll()', () => {
-    it('should return an array of users', async () => {
-      const users = await service.findAll();
-      expect(users).toEqual(projectArray);
+    it('should return an array of projects', async () => {
+      const projects = await service.findAll();
+      expect(projects).toEqual(projectArray);
     });
   });
 
   describe('findOne()', () => {
-    it('should get a single user', () => {
+    it('should get a single project', () => {
       const repoSpy = jest.spyOn(repository, 'findOneBy');
-      expect(service.findOne(1)).resolves.toEqual(oneUser);
+      expect(service.findOne(1)).resolves.toEqual(oneProject);
       expect(repoSpy).toBeCalledWith({ id: 1 });
+    });
+  });
+
+  describe('remove()', () => {
+    it('should call remove with the passed value', async () => {
+      const removeSpy = jest.spyOn(repository, 'delete');
+      const retVal = await service.remove(2);
+      expect(removeSpy).toBeCalledWith(2);
+      expect(retVal).toBeUndefined();
     });
   });
 });
