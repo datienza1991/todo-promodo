@@ -34,6 +34,7 @@ describe('ProjectsService', () => {
             find: jest.fn().mockResolvedValue(projectArray),
             findOneBy: jest.fn().mockResolvedValue(oneProject),
             save: jest.fn().mockResolvedValue(oneProject),
+            update: jest.fn().mockResolvedValue(oneProject),
             delete: jest.fn(),
           },
         },
@@ -54,8 +55,24 @@ describe('ProjectsService', () => {
         id: 1,
         name: 'name1',
       };
+
       expect(
         service.create({
+          name: 'name1',
+        })
+      ).resolves.toEqual(oneProject);
+    });
+  });
+
+  describe('update()', () => {
+    it('should successfully update a project', () => {
+      const oneProject: Project = {
+        id: 1,
+        name: 'name1',
+      };
+
+      expect(
+        service.update(1, {
           name: 'name1',
         })
       ).resolves.toEqual(oneProject);
