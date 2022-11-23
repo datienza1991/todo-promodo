@@ -5,12 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectsModule } from '../../todos/projects/projects.module';
 import { CreateProjectDto } from '../../todos/projects/dto/create-project.dto';
 import { Project } from '../../todos/projects/entities/project.entity';
+import { UpdateProjectDto } from '../../todos/projects/dto/update-project.dto';
 
 describe('projects - /projects (e2e)', () => {
-  const projects = {
+  const project = {
     id: 1,
-    name: 'name1'
+    name: 'name1',
   };
+  const dbName = `todo-promodoro-test-db-new-${Math.random() * 1000}`;
 
   let app: INestApplication;
 
@@ -19,7 +21,7 @@ describe('projects - /projects (e2e)', () => {
       imports: [
         TypeOrmModule.forRoot({
           type: 'sqlite',
-          database: 'todo-promodoro-test-db',
+          database: dbName,
           entities: [Project],
           synchronize: true,
         }),
@@ -34,10 +36,20 @@ describe('projects - /projects (e2e)', () => {
   it('Create [POST /projects]', () => {
     return request(app.getHttpServer())
       .post('/projects')
-      .send(projects as CreateProjectDto)
+      .send(project as CreateProjectDto)
       .expect(201)
       .then(({ body }) => {
-        expect(body).toEqual(projects);
+        expect(body).toEqual(project);
+      });
+  });
+
+  it('Update [Patch /projects]', () => {
+    return request(app.getHttpServer())
+      .patch('/projects/1')
+      .send(project as UpdateProjectDto)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual(project);
       });
   });
 

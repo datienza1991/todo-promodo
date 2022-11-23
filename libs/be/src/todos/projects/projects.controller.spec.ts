@@ -1,9 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsController } from './projects.controller';
 import { ProjectService } from './projects.service';
 
 const createProjectDto: CreateProjectDto = {
+  name: 'name',
+};
+
+const updateProjectDto: UpdateProjectDto = {
   name: 'name',
 };
 
@@ -24,6 +29,11 @@ describe('ProjectsController', () => {
               .mockImplementation((project: CreateProjectDto) =>
                 Promise.resolve({ id: 1, ...project })
               ),
+            update: jest
+              .fn()
+              .mockImplementation((id: number, project: UpdateProjectDto) =>
+                Promise.resolve({ id, ...project })
+              ),
             findAll: jest.fn().mockResolvedValue([
               {
                 name: 'name1',
@@ -35,7 +45,7 @@ describe('ProjectsController', () => {
             findOne: jest.fn().mockImplementation((id: string) =>
               Promise.resolve({
                 name: 'name1',
-                id
+                id,
               })
             ),
             remove: jest.fn(),
@@ -45,7 +55,7 @@ describe('ProjectsController', () => {
     }).compile();
 
     controller = module.get<ProjectsController>(ProjectsController);
-  projectService = module.get<ProjectService>(ProjectService);
+    projectService = module.get<ProjectService>(ProjectService);
   });
 
   it('should be defined', () => {
@@ -60,6 +70,17 @@ describe('ProjectsController', () => {
         ...createProjectDto,
       });
       expect(projectService.create).toHaveBeenCalledWith(createProjectDto);
+    });
+  });
+
+  describe('update()', () => {
+    it('should update a project', () => {
+      controller.update(1, updateProjectDto);
+      expect(controller.update(1, updateProjectDto)).resolves.toEqual({
+        id: 1,
+        ...updateProjectDto,
+      });
+      expect(projectService.update).toHaveBeenCalledWith(1, updateProjectDto);
     });
   });
 
@@ -86,5 +107,4 @@ describe('ProjectsController', () => {
       expect(projectService.remove).toHaveBeenCalled();
     });
   });
-
 });
